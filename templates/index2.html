@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/neumorphism.css') }}">
+</head>
+<body>
+ <div class="container">
+  <section class="jumbotron">
+      <h1>Ml model Deploymeny Using Flask</h1>
+      <p>Enter/Edit details for forecasting.</p> 
+    </section>
+  <section>
+    <div class="row justify-content-md-around">
+      <div class="col-12 col-md-6 col-lg-5 mb-5 mb-lg-0">
+        <div class="card bg-primary shadow-soft border-light p-4">
+            <div class="card-body">
+                <form action="{{ url_for('predict')}}" method="post" class="mt-4">
+                    <!-- Form -->
+                    <div class="form-group">
+                        <div class="input-group mb-4">
+                            <input name="age" placeholder="age" type="text">
+                            <input name="fnlwgt" placeholder="fnlwgt" type="text">
+                            <input name="education-num" placeholder="education-num" type="text">
+                            <input name="capital-gain" placeholder="capital-gain" type="text">
+                            <input name="capital-loss" placeholder="capital-loss" type="text">
+                            <input name="hours-per-week" placeholder="hours-per-week"  type="text">                            
+                        </div>
+                    </div>
+
+                    
+                <br>
+                <center style="color: blue;font-weight: bold;">
+                  {{ prediction_text }}
+                </center>
+                <br>
+
+                    <button type="submit" class="btn btn-block btn-primary">Predict</button>
+                </form>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

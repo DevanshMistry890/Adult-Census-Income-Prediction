@@ -1,35 +1,37 @@
-# Importing the libraries
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
+import warnings
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import make_classification
 import pickle
 
-dataset = pd.read_csv('adult.csv')
+df = pd.read_csv("adult.csv")
 
-X = dataset.iloc[:, :3]
+df_features = ['age', 'fnlwgt','education-num','capital-gain', 'capital-loss', 'hours-per-week']
 
-#Converting words to integer values
-def convert_to_int(word):
-    word_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5, 'six':6, 'seven':7, 'eight':8,
-                'nine':9, 'ten':10, 'eleven':11, 'twelve':12, 'zero':0, 0: 0}
-    return word_dict[word]
+X = df[df_features]
 
-X['experience'] = X['experience'].apply(lambda x : convert_to_int(x))
+Y = df.salary
 
-y = dataset.iloc[:, -1]
+# Set Training and Testing Data
+X_train, X_test, y_train, y_test = train_test_split(X , Y, 
+                                                    shuffle = True, 
+                                                    test_size=0.2, 
+                                                    random_state=1)
 
-#Splitting Training and Test Set
-#Since we have a very small dataset, we will train our model with all availabe data.
+# Show the Training and Testing Data
+print('Shape of training feature:', X_train.shape)
+print('Shape of testing feature:', X_test.shape)
+print('Shape of training label:', y_train.shape)
+print('Shape of training label:', y_test.shape)
 
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
+from sklearn import tree
 
-#Fitting model with trainig data
-regressor.fit(X, y)
+# Building Decision Tree model 
+dtc = tree.DecisionTreeClassifier(random_state=0)
+dtc.fit(X_train, y_train)
 
-# Saving model to disk
-pickle.dump(regressor, open('model.pkl','wb'))
-
-# Loading model to compare the results
-model = pickle.load(open('model.pkl','rb'))
-print(model.predict([[2, 9, 6]]))
+pickle.dump(dtc, open('model.pkl','wb'))
