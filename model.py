@@ -1,37 +1,58 @@
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import warnings
-from sklearn import datasets
+# importing the dataset
+import pandas
+import numpy
+from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import make_classification
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.model_selection import KFold
 import pickle
 
-df = pd.read_csv("adult.csv")
+df = pandas.read_csv('adult.csv')
+df.head()
 
-df_features = ['age', 'fnlwgt','education-num','capital-gain', 'capital-loss', 'hours-per-week']
+df = df.drop(['fnlwgt', 'education-num'], axis=1)
 
-X = df[df_features]
+col_names = df.columns
 
-Y = df.salary
+for c in col_names:
+	df = df.replace("?", numpy.NaN)
+df = df.apply(lambda x: x.fillna(x.value_counts().index[0]))
 
-# Set Training and Testing Data
-X_train, X_test, y_train, y_test = train_test_split(X , Y, 
-                                                    shuffle = True, 
-                                                    test_size=0.2, 
-                                                    random_state=1)
+df.replace(['Divorced', 'Married-AF-spouse',
+			'Married-civ-spouse', 'Married-spouse-absent',
+			'Never-married', 'Separated', 'Widowed'],
+		['divorced', 'married', 'married', 'married',
+			'not married', 'not married', 'not married'], inplace=True)
 
-# Show the Training and Testing Data
-print('Shape of training feature:', X_train.shape)
-print('Shape of testing feature:', X_test.shape)
-print('Shape of training label:', y_train.shape)
-print('Shape of training label:', y_test.shape)
+category_col = ['workclass', 'race', 'education', 'marital-status', 'occupation',
+				'relationship', 'sex', 'country', 'salary']
+labelEncoder = preprocessing.LabelEncoder()
 
-from sklearn import tree
+mapping_dict = {}
+for col in category_col:
+	df[col] = labelEncoder.fit_transform(df[col])
 
-# Building Decision Tree model 
-dtc = tree.DecisionTreeClassifier(random_state=0)
-dtc.fit(X_train, y_train)
+	le_name_mapping = dict(zip(labelEncoder.classes_,
+							labelEncoder.transform(labelEncoder.classes_)))
 
-pickle.dump(dtc, open('model.pkl','wb'))
+	mapping_dict[col] = le_name_mapping
+print(mapping_dict)
+
+X = df.values[:, 0:12]
+Y = df.values[:, 12]
+
+X_train, X_test, y_train, y_test = train_test_split(
+		X, Y, test_size = 0.3, random_state = 100)
+
+
+
+kf = KFold(n_splits=5,random_state=250,shuffle=True)
+gradient_booster = GradientBoostingClassifier(learning_rate=0.1)
+gradient_booster.get_params()
+gradient_booster.fit(X_train,y_train)
+predictions_g = gradient_booster.predict(X_test)
+print('gradient_booster Accuracy: ', accuracy_score(y_test, predictions_g)*100)
+
+pickle.dump(gradient_booster, open('model.pkl','wb'))

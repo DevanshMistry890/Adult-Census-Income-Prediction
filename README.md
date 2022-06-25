@@ -1,21 +1,5 @@
-# Adult-Census-Income-Prediction
-Internship Project
-
-Project Title: Adult Census Income Prediction
-Technologies:  Machine Learning Technology
-Domain:  Finance
-Project Difficulties level:  Intermediate
-Problem Statement:
-The Goal is to predict whether a person has an income of more than 50K a year or not.
-This is basically a binary classification problem where a person is classified into the 
->50K group or <=50K group.
-
-# Note:
-content here is not safe to use in any project, i am will be not resopnsible for any kind of copyright issues. I am using this repo for just my ease.
-
-
 ## ML-Model-Flask-Deployment
-This project is to elaborate how Machine Learn Models are deployed on production using Flask API
+This is a demo project to elaborate how Machine Learn Models are deployed on production using Flask API
 
 ### Prerequisites
 You must have Scikit Learn, Pandas (for Machine Leraning Model) and Flask (for API) installed.
@@ -42,6 +26,10 @@ By default, flask will run on port 5000.
 
 3. Navigate to URL http://localhost:5000
 
-Enter valid numerical values in all 4 input boxes and hit Predict.
+You should be able to view the homepage as below :
+
+
+Enter valid numerical values in all 3 input boxes and hit Predict.
 
 If everything goes well, you should  be able to see the predcited salary vaule on the HTML page!
+
