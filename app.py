@@ -1,6 +1,11 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
+import logging
+
+logging.basicConfig(filename='test.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
+logging.debug(' app.py File execution started ')
 
 
 #create flask app
@@ -13,6 +18,7 @@ def ValuePredictor(to_predict_list):
 	loaded_model = pickle.load(open("model.pkl", "rb"))
 	result = loaded_model.predict(to_predict)
 	return result[0]
+logging.debug(' prediction function loaded ')
 
 @app.route('/')
 def home():
@@ -23,7 +29,9 @@ def result():
 	if request.method == 'POST':
 		to_predict_list = request.form.to_dict()
 		to_predict_list = list(to_predict_list.values())
+		print(to_predict_list)
 		to_predict_list = list(map(int, to_predict_list))
+		print(to_predict_list)
 		result = ValuePredictor(to_predict_list)	
 		if int(result)== 1:
 			prediction ='Income is >50K $'

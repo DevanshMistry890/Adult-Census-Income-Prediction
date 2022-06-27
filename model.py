@@ -8,9 +8,15 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import KFold
 import pickle
+import logging
+
+logging.basicConfig(filename='test.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
+logging.debug(' Model.py File execution started ')
+
 
 df = pandas.read_csv('adult.csv')
-df.head()
+logging.debug(' Database Loaded ')
 
 df = df.drop(['fnlwgt', 'education-num'], axis=1)
 
@@ -40,19 +46,29 @@ for col in category_col:
 	mapping_dict[col] = le_name_mapping
 print(mapping_dict)
 
+df.columns
+
+logging.debug(' Database Pre-Processing Done ')
+
 X = df.values[:, 0:12]
 Y = df.values[:, 12]
 
-X_train, X_test, y_train, y_test = train_test_split(
-		X, Y, test_size = 0.3, random_state = 100)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3, random_state = 100)
 
 
 
-kf = KFold(n_splits=5,random_state=250,shuffle=True)
-gradient_booster = GradientBoostingClassifier(learning_rate=0.1)
-gradient_booster.get_params()
-gradient_booster.fit(X_train,y_train)
-predictions_g = gradient_booster.predict(X_test)
-print('gradient_booster Accuracy: ', accuracy_score(y_test, predictions_g)*100)
+# Show the Training and Testing Data
+print('Shape of training feature:', X_train.shape)
+print('Shape of testing feature:', X_test.shape)
+print('Shape of training label:', y_train.shape)
+print('Shape of training label:', y_test.shape)
 
-pickle.dump(gradient_booster, open('model.pkl','wb'))
+from sklearn.ensemble import ExtraTreesClassifier
+# Building the model
+extra_tree_forest = ExtraTreesClassifier(n_estimators = 5,criterion ='entropy', max_features = 2)
+extra_tree_forest.fit(X, Y)
+predictions_e = extra_tree_forest.predict(X_test)
+print('Accuracy: ', accuracy_score(y_test, predictions_e))
+
+pickle.dump(extra_tree_forest, open('model.pkl','wb'))
+logging.debug(' Execution of Model.py is finished ')
