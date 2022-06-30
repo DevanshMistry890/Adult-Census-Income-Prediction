@@ -1,35 +1,77 @@
-## ML-Model-Flask-Deployment
-This is a demo project to elaborate how Machine Learn Models are deployed on production using Flask API
+# Adult Census Prediction System 😄
 
-### Prerequisites
-You must have Scikit Learn, Pandas (for Machine Leraning Model) and Flask (for API) installed.
+## Description
+<b>
+The prominent inequality of wealth and income is a huge concern, especially in the United States.
+The likelihood of diminishing poverty is one valid reason to reduce the world's surging level of economic inequality.
+The principle of universal moral equality ensures sustainable development and improves the economic stability of a nation.
+This study aims to show the usage of machine learning and data mining techniques in providing a solution to the income equality problem.
+This project is done as an internship under "iNeuron Intelligence Pvt Ltd."
+</b><br> <br>
 
-### Project Structure
-This project has four major parts :
-1. model.py - This contains code fot our Machine Learning model to predict employee salaries absed on trainign data in 'hiring.csv' file.
-2. app.py - This contains Flask APIs that receives employee details through GUI or API calls, computes the precited value based on our model and returns it.
-3. test.txt - log file.
-4. templates - This folder contains the HTML template to allow user to enter employee detail and displays the predicted employee salary.
+## Objectives
+The Goal is to predict whether a person has an income of more than 50K a year or not.
 
-### Running the project
-1. Ensure that you are in the project home directory. Create the machine learning model by running below command -
+This is basically a binary classification problem where a person is classified into the 
+
+>50K group or <=50K group.<br><br>
+
+## Life Cycle of Machine Learning Project
+Life Cycle of implementing machine learning application.
+- Gathering the Data
+- Data Preparation
+- Data Preprocessing
+- Create Model
+- Evaluate Model
+- Deploy the model
+<br>
+
+## Dataset
+The UCI Adult Dataset has been used for this purpose, taken from the Kaggle. link is below.
+
+- [datset](https://www.kaggle.com/overload10/adult-census-dataset)
+
+## Homepage (Responsive)
+<img src = "image\Home2.png" width = "200px">
+<img src = "image\Home3.png" width = "700px">
+
+<br><br>
+
+## 🛠️ Requirements
+* Python (Programming Language version 3.7+)
+* Flask (Python Backend Framework)
+* sklearn (Machine Learning Library)
+* pandas (Python Library for Data operations)
+* NumPy (Python Library for Numerical operations)
+* VS code (IDE)
+* Azure (Cloud platform)<br><br>
+
+#### How to run this code...
+- Create virtual environment
+```bash
+conda create -n myenv python=3.8
 ```
-python model.py
+- Activate the environment
+```bash
+conda activate myenv
 ```
-This would create a serialized version of our model into a file model.pkl
-
-2. Run app.py using below command to start Flask API
+- Install the packages
+```bash
+pip install -r requirements.txt
 ```
+- Run the app
+```bash
 python app.py
 ```
-By default, flask will run on port 5000.
+- Navigate to URL http://127.0.0.1:5000/
+<br>
 
-3. Navigate to URL http://localhost:5000
+- Enter valid values in all input boxes and hit Predict.
 
-You should be able to view the homepage as below :
+If everything goes well, you should  be able to see the predcited salary Class on the HTML page!
 
+## Authors
+Devansh Mistry - [Linkedin](https://linkedin.com/in/devansh-vinodkumar-mistry-9bb2611aa/)
 
-Enter valid numerical values in all 3 input boxes and hit Predict.
-
-If everything goes well, you should  be able to see the predcited salary vaule on the HTML page!
+## If you like this project, please do give the star. If you have any suggestions or issues, please drop me a message.
 
