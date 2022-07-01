@@ -16,7 +16,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # log file initialization 
-logging.basicConfig(filename='test.log', level=logging.DEBUG,
+logging.basicConfig(filename='debug.log', level=logging.DEBUG,
                     format='%(asctime)s:%(levelname)s:%(message)s')
 
 logging.debug(' Model.py File execution started ')
@@ -86,7 +86,6 @@ print("After oversampling: ",Counter(y_train_SMOTE))
 # model fitting using LGBMClassifier
 clf = lgb.LGBMClassifier()
 clf.fit(X_train_SMOTE, y_train_SMOTE)
-
 
 # Show the Training and Testing Data
 print('Shape of training feature:', X_train_SMOTE.shape)

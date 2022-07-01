@@ -1,5 +1,5 @@
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, render_template
 import pickle
 
 
@@ -33,7 +33,3 @@ def result():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-
