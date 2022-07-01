@@ -32,7 +32,7 @@ The UCI Adult Dataset has been used for this purpose, taken from the Kaggle. lin
 - [datset](https://www.kaggle.com/overload10/adult-census-dataset)
 
 ## Homepage (Responsive)
-<img src = "image\Home2.png" width = "200px">
+<img src = "image\Home2.png" width = "700px">
 <img src = "image\Home3.png" width = "700px">
 
 <br><br>
