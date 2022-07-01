@@ -11,7 +11,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from collections import Counter
 from imblearn.over_sampling import SMOTE
-import lightgbm as lgb
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.model_selection import KFold
+# import lightgbm as lgb
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -84,8 +86,11 @@ X_train_SMOTE, y_train_SMOTE = SMOTE.fit_resample(X_train, y_train)
 print("After oversampling: ",Counter(y_train_SMOTE))
 
 # model fitting using LGBMClassifier
-clf = lgb.LGBMClassifier()
-clf.fit(X_train_SMOTE, y_train_SMOTE)
+# clf = lgb.LGBMClassifier()
+
+kf = KFold(n_splits=5,random_state=250,shuffle=True)
+
+# clf.fit(X_train_SMOTE, y_train_SMOTE)
 
 # Show the Training and Testing Data
 print('Shape of training feature:', X_train_SMOTE.shape)
@@ -94,9 +99,15 @@ print('Shape of training label:', y_train_SMOTE.shape)
 print('Shape of training label:', y_test.shape)
 
 # Printing Accuracy
-predictions_e = clf.predict(X_test)
-print('Accuracy: ', accuracy_score(y_test, predictions_e))
+# predictions_e = clf.predict(X_test)
+# print('Accuracy: ', accuracy_score(y_test, predictions_e))
+
+gradient_booster = GradientBoostingClassifier()
+gradient_booster.get_params()
+gradient_booster.fit(X_train_SMOTE, y_train_SMOTE)
+predictions_g = gradient_booster.predict(X_test)
+print('Accuracy: ', accuracy_score(y_test, predictions_g))
 
 # pkl export & finish log
-pickle.dump(clf, open('model.pkl','wb'))
+pickle.dump(gradient_booster, open('model.pkl','wb'))
 logging.debug(' Execution of Model.py is finished ')
