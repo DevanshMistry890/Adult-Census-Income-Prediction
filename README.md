@@ -43,7 +43,7 @@ The UCI Adult Dataset has been used for this purpose, taken from the Kaggle. lin
 * sklearn (Machine Learning Library)
 * pandas (Python Library for Data operations)
 * NumPy (Python Library for Numerical operations)
-* lightgbm (Machine Learning Model training Library)
+* imblearn (sampling Library)
 * VS code (IDE)
 * Azure (Cloud platform)<br><br>
 
