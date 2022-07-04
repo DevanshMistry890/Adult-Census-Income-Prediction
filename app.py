@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 import pickle
 
 
-#create flask app
+#create flask app name
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
