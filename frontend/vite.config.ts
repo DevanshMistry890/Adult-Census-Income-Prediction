@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/Adult-Census-Income-Prediction/',
   
   optimizeDeps: {
     exclude: ['webshap', 'node-fetch', 'onnxruntime-web'], 
