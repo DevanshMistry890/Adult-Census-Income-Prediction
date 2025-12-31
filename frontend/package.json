@@ -1,11 +1,14 @@
 {
-  "name": "frontend",
+  "name": "acip-frontend",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://devanshmistry890.github.io/Adult-Census-Income-Prediction"
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc  && vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
     "lint": "eslint .",
     "preview": "vite preview"
   },
