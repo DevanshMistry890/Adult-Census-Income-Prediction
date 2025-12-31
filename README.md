@@ -9,6 +9,11 @@ This project simulates a real-world financial risk assessment system. It predict
 
 Unlike standard "black box" AI, this system provides **Human-Readable Explanations** for every decision using SHAP (Shapley Additive exPlanations), making it compliant with "Right to Explain" AI regulations.
 
+
+> **🚀 Major Update (v2.0):** This project has been re-engineered as a **Serverless Edge AI Application**. The model now runs 100% client-side using WebAssembly and ONNX, eliminating the need for a Python backend.
+> Check out other brach for more information. 
+> [**👉 Try the Live Demo Here**](https://devanshmistry890.github.io/Adult-Census-Income-Prediction/)
+
 ## 🏗️ Architecture
 The system follows a modern decoupled architecture:
 
@@ -70,3 +75,4 @@ npm run dev
 
 
 Built by Devansh Mistry
+
