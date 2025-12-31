@@ -1,78 +1,72 @@
-# Adult Census Prediction System 😄
+# 💰 Census Income AI: Production Risk Assessment
 
-## Description
-<b>
-The prominent inequality of wealth and income is a huge concern, especially in the United States.
-The likelihood of diminishing poverty is one valid reason to reduce the world's surging level of economic inequality.
-The principle of universal moral equality ensures sustainable development and improves the economic stability of a nation.
-This study aims to show the usage of machine learning and data mining techniques in providing a solution to the income equality problem.
-This project is done as an internship under "iNeuron Intelligence Pvt Ltd."
-</b><br> <br>
+> **A Full-Stack AI Application predicting financial eligibility using Explainable AI (SHAP) and modern Glassmorphism UI.**
 
-## Objectives
-The Goal is to predict whether a person has an income of more than 50K a year or not.
+![Dashboard Preview](dashboard.png)
 
-This is basically a binary classification problem where a person is classified into the 
+## 🚀 Project Overview
+This project simulates a real-world financial risk assessment system. It predicts whether an applicant earns >$50K/year (a common proxy for loan eligibility) based on demographic and employment data.
 
->50K group or <=50K group.<br><br>
+Unlike standard "black box" AI, this system provides **Human-Readable Explanations** for every decision using SHAP (Shapley Additive exPlanations), making it compliant with "Right to Explain" AI regulations.
 
-## Life Cycle of Machine Learning Project
-Life Cycle of implementing machine learning application.
-- Gathering the Data
-- Data Preparation
-- Data Preprocessing
-- Create Model
-- Evaluate Model
-- Deploy the model
-<br>
+## 🏗️ Architecture
+The system follows a modern decoupled architecture:
 
-## Dataset
-The UCI Adult Dataset has been used for this purpose, taken from the Kaggle. link is below.
+* **Frontend:** React (TypeScript + Vite) with Glassmorphism UI & Framer Motion.
+* **Backend:** FastAPI (Python) serving the XGBoost model & SHAP analysis.
+* **Model:** Gradient Boosted Trees (XGBoost) tuned for high-precision risk management.
 
-- [datset](https://www.kaggle.com/overload10/adult-census-dataset)
+## 🧬 Project Evolution (Research to Production)
+This repository demonstrates the full lifecycle of a Machine Learning project:
 
-## Homepage (Responsive)
-<img src = "image\Home2.png" width = "700px">
-<img src = "image\Home3.png" width = "700px">
+### Phase 1: Research & Experimentation (`/research_and_legacy`)
+* **Data Analysis:** Conducted extensive EDA on the raw Adult Census dataset.
+* **Model Benchmarking:**
+    * **Deep Learning (PyTorch):** Built a custom ResNet-style MLP with Entity Embeddings. (Recall: 86%).
+    * **Gradient Boosting (XGBoost):** Tuned for stability and precision. (Accuracy: 87.5%).
+* **Decision:** XGBoost was selected for production due to better performance on tabular data and stricter precision control (80% Precision threshold).
 
-<br><br>
+### Phase 2: Production Engineering (`/frontend` & `/backend`)
+* **API Development:** Built type-safe endpoints using Pydantic validators.
+* **XAI Integration:** Implemented a natural language decoder to translate SHAP values into English (e.g., *"Status 'Never-married' significantly decreases income probability"*).
+* **UI/UX:** Designed a physics-based, animated interface to replace static forms.
 
-## 🛠️ Requirements
-* Python (Programming Language version 3.7+)
-* Flask (Python Backend Framework)
-* sklearn (Machine Learning Library)
-* pandas (Python Library for Data operations)
-* NumPy (Python Library for Numerical operations)
-* imblearn (sampling Library)
-* VS code (IDE)
-* Azure (Cloud platform)<br><br>
+## 🛠️ Tech Stack
 
-#### How to run this code...
-- Create virtual environment
+| Component | Technologies |
+| :--- | :--- |
+| **Frontend** | React, TypeScript, Tailwind CSS, Framer Motion, Axios |
+| **Backend** | FastAPI, Uvicorn, Python 3.11 |
+| **ML Engine** | XGBoost, Scikit-Learn, SHAP, NumPy, Pandas |
+| **Research** | PyTorch, Matplotlib, Seaborn |
+
+## ⚡ Quick Start
+
+### 1. Backend Setup
 ```bash
-conda create -n myenv python=3.8
-```
-- Activate the environment
-```bash
-conda activate myenv
-```
-- Install the packages
-```bash
+cd backend
 pip install -r requirements.txt
+uvicorn main:app --reload
+# Server runs at http://localhost:8000
 ```
-- Run the app
+
+### 2. Frontend Setup
 ```bash
-python app.py
+cd frontend
+npm install
+npm run dev
+# App runs at http://localhost:5173
 ```
-- Navigate to URL http://127.0.0.1:5000/
-<br>
 
-- Enter valid values in all input boxes and hit Predict.
+### 📂 Repository Structure
+```bash
+├── frontend/             # Modern React Application
+├── backend/              # FastAPI Server + Tuned Model
+│   ├── main.py          # API Endpoints
+│   └── model_tuned.pkl  # Production XGBoost Model
+├── research_and_legacy/  # Original Experiments (EDA, PyTorch, Baseline)
+└── README.md             # Documentation
+```
 
-If everything goes well, you should  be able to see the predcited salary Class on the HTML page!
 
-## Authors
-Devansh Mistry - [Linkedin](https://linkedin.com/in/devansh-vinodkumar-mistry-9bb2611aa/)
-
-## If you like this project, please do give the star. If you have any suggestions or issues, please drop me a message.
-
+Built by Devansh Mistry
