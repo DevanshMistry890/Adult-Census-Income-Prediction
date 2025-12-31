@@ -2,7 +2,7 @@
 
 > **A Full-Stack AI Application predicting financial eligibility using Explainable AI (SHAP) and modern Glassmorphism UI.**
 
-![Dashboard Preview](frontend/public/dashboard-preview.png)
+![Dashboard Preview](dashboard.png)
 
 ## 🚀 Project Overview
 This project simulates a real-world financial risk assessment system. It predicts whether an applicant earns >$50K/year (a common proxy for loan eligibility) based on demographic and employment data.
@@ -67,5 +67,6 @@ npm run dev
 ├── research_and_legacy/  # Original Experiments (EDA, PyTorch, Baseline)
 └── README.md             # Documentation
 ```
+
 
 Built by Devansh Mistry
