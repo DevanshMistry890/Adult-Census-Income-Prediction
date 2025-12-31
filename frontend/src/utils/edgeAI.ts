@@ -9,8 +9,9 @@ const ort = (window as any).ort;
 // Tell it to use the WASM files from the same CDN version
 ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.14.0/dist/";
 
-const MODEL_PATH = '/model.onnx';
-const BACKGROUND_PATH = '/background.json';
+// Uses the base path automatically (works for both localhost and GitHub Pages)
+const MODEL_PATH = import.meta.env.BASE_URL + 'model.onnx';
+const BACKGROUND_PATH = import.meta.env.BASE_URL + 'background.json';
 
 let session: any = null; // Type 'any' because we don't have the TS types installed
 let backgroundData: number[][] | null = null;
@@ -75,4 +76,5 @@ export const runEdgeInference = async (inputRow: number[]) => {
     probability, 
     shap_values: shapValues 
   };
+
 };
